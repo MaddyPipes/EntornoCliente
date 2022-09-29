@@ -31,7 +31,7 @@ miVector[7] = 8;
 miVector[8] = 9;
 miVector[9] = 10;
 
-let otroArray = [1,2,3,4,5,6,7,8,9,10];
+let otroArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 console.log(miVector[3]);
 
@@ -40,3 +40,47 @@ console.log(otroArray[5]);
 console.log(miVector);
 
 console.log(miVector.length);
+
+//Ejemplo condicionales
+
+let roll = Math.floor(Math.random() * 20) + 1;
+
+if (roll === 20) {
+    console.log("¡Has sacado un 20!¡CRÍTICO!");
+}
+else if (roll === 1) {
+    console.log("Un 1... Pifia...");
+}
+else
+    console.log(roll);
+
+//Ejemplo bucle "for"
+let potenciasDeDos = [];
+let contadorPosicion = 0;
+for(i=2; i<=1000; i*=2){
+    potenciasDeDos[contadorPosicion] = i;
+    contadorPosicion++;
+} console.log(potenciasDeDos);
+
+//Ejemplo bucle "while"
+potenciasDeDos = [];
+contadorPosicion = 0;
+let c = 2;
+while(c<=1000){
+    potenciasDeDos[contadorPosicion] = c;
+    contadorPosicion++;
+    c*=2;
+}
+console.log(potenciasDeDos);
+
+//Ejemplo bucle "do while"
+
+potenciasDeDos = [];
+contadorPosicion = 0;
+c = 2;
+do{
+    potenciasDeDos[contadorPosicion] = c;
+    contadorPosicion++;
+    c*=2;
+}while(c<=1000);
+console.log(potenciasDeDos);
