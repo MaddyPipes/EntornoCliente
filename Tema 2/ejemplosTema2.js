@@ -57,30 +57,58 @@ else
 //Ejemplo bucle "for"
 let potenciasDeDos = [];
 let contadorPosicion = 0;
-for(i=2; i<=1000; i*=2){
+console.time("loop")
+for (i = 2; i <= 1000; i *= 2) {
     potenciasDeDos[contadorPosicion] = i;
     contadorPosicion++;
 } console.log(potenciasDeDos);
-
+console.timeEnd("loop")
 //Ejemplo bucle "while"
 potenciasDeDos = [];
 contadorPosicion = 0;
 let c = 2;
-while(c<=1000){
+console.time("loop")
+while (c <= 1000) {
     potenciasDeDos[contadorPosicion] = c;
     contadorPosicion++;
-    c*=2;
+    c *= 2;
 }
 console.log(potenciasDeDos);
-
+console.timeEnd("loop")
 //Ejemplo bucle "do while"
 
 potenciasDeDos = [];
 contadorPosicion = 0;
 c = 2;
-do{
+console.time("loop")
+do {
     potenciasDeDos[contadorPosicion] = c;
     contadorPosicion++;
-    c*=2;
-}while(c<=1000);
+    c *= 2;
+} while (c <= 1000);
 console.log(potenciasDeDos);
+console.timeEnd("loop")
+//Ejemplo break:
+
+let clave = true;
+let numveces = 0;
+
+while (clave !== "bocachanclas" && clave) {
+    clave = prompt("Introduce la clave ", "");
+    numveces++;
+    if (numveces === 2)
+        break;
+}
+if (clave == "bocachanclas"){
+    console.log("La clave es correcta");
+} else {
+    console.log("La clave es incorrecta");
+}
+
+//Ejemplo continue
+
+for (i=0;i<=50;i+=3){
+ if ((i%2)===0)
+ continue;
+ console.log(i);
+}
