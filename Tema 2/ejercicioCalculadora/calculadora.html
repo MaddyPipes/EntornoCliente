@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <input type="text" id="n1" placeholder="Introduce el primer número.">
+    <input type="text" id="n2" placeholder="Introduce el segundo número.">
+    <button class="operador" onclick="suma(this)">+</button>
+    <button class="operador" onclick="resta(this)">-</button>
+    <button class="operador" onclick="multi(this)">x</button>
+    <button class="operador" onclick="divi(this)">/</button>
+    <button class="operador" onclick="binario(this)">Binario</button>
+    <div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+
+
+        let suma = (button) => {
+            let numero1 = parseInt(document.getElementById('n1').value);
+            let numero2 = parseInt(document.getElementById('n2').value);
+            document.getElementById('result').innerHTML = `${numero1 + numero2}`;
+        }
+        let resta = (button) => {
+            let numero1 = parseInt(document.getElementById('n1').value);
+            let numero2 = parseInt(document.getElementById('n2').value);
+            document.getElementById('result').innerHTML = `${numero1 - numero2}`;
+        }
+        let multi = (button) => {
+            let numero1 = parseInt(document.getElementById('n1').value);
+            let numero2 = parseInt(document.getElementById('n2').value);
+            document.getElementById('result').innerHTML = `${numero1 * numero2}`;
+        }
+        let divi = (button) => {
+            let numero1 = parseInt(document.getElementById('n1').value);
+            let numero2 = parseInt(document.getElementById('n2').value);
+            document.getElementById('result').innerHTML = `${numero1 / numero2}`;
+        }
+
+        let binario = (button) => {
+            let num = parseInt(document.getElementById('n1').value);
+            let binary = (num % 2).toString();
+            for (; num > 1;) {
+                num = parseInt(num / 2);
+                binary = (num % 2) + (binary);
+            }
+            document.getElementById('result').innerHTML = binary;
+        }
+    </script>
+</body>
+
+</html>
