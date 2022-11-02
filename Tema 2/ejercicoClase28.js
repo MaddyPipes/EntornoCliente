@@ -40,6 +40,9 @@ class habitacion {
     //Y creamos una función para añadir ocupantes, otra para eliminarlos y otra para mostrar la lista
 
     agregar_alumno_habitacion(n) {
+        if (this.ocupantes.length == this.nAlumnos)
+            console.log("¡Número máximo de alumnos alcanzado!")
+        else
             this.ocupantes.push(listaAlumnos[n]);
     }
 
@@ -97,10 +100,10 @@ let alumno6 = new alumno("Optimus", "Prime", "0101001010011101010010100011110010
 
 mostrar_alumnos(listaAlumnos);
 
-let habitacion1 =  new habitacion("12B");
-let habitacion2 =  new habitacion("09Z");
+let habitacion1 = new habitacion("12B");
+let habitacion2 = new habitacion("09Z");
 
-let residencia1 =  new residencia("Desengaño 21")
+let residencia1 = new residencia("Desengaño 21")
 
 //Introducimos a los alumnos en la lista de los alumnos.
 
