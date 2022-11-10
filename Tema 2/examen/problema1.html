@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>Problema 1 (3p)
+        Diseña un programa que reciba 2 parámetros y pueda realizar las siguientes funciones.
+        <ul>
+            <li>- Suma</li>
+            <li>- Resta</li>
+            <li>- Multiplicación</li>
+            <li>- Division</li>
+            <li>- Se debe realizar sin usar los símbolos de -,+,* o /</li>
+        </ul>
+    </h4>
+
+    <!-- Creamos el formulario en el que se introducirán los datos y los botones que se usarán para las cuentas. Cada uno de los botones llevará asignado un
+evento de click que llamará a la función designada en el script -->
+
+    <input type="text" id="n1" placeholder="Introduce el primer número.">
+    <input type="text" id="n2" placeholder="Introduce el segundo número.">
+    <button class="operador" onclick="suma(this)">+</button>
+    <button class="operador" onclick="resta(this)">-</button>
+    <button class="operador" onclick="multi(this)">x</button>
+    <button class="operador" onclick="divi(this)">/</button>
+
+    <!-- Creamos un div vacío con un párrafo de id definida como "result", que usaremos para mostrar en la página los resultados cambiando su código html desde el script -->
+
+    <div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+
+        // Comenzamos con el script, para evitar fallos a la hora de pasar los archivos, lo he incluído en la misma página HTML en lugar de
+        //en un fichero independiente vinculado (aunque eso sería lo suyo)
+
+        //En el script creamos las funciones que serán llamadas al realizar el "submit" de los botones (especificado en su parámetro).
+        //Cada una consistirá de prácticamente los mismos elementos:
+        //-Variables que contengan el valor de los input de texto, obtenidos mediante getByID y pasados a valor numérico.
+        //-Una variable que contenga el resultado.
+        //-Un método de escritura mediante innerHTML sobre el párrafo vacío con una comprobación previa del resultado, para descartar resultados
+        //negativos por mala sintáxis numérica (Como por ejemplo, usar letras en el input).
+
+        let suma = (button) => {
+            let numero1 = Number(document.getElementById('n1').value);
+            let numero2 = Number(document.getElementById('n2').value);
+            let resultado = numero1 + numero2;
+            if (resultado == NaN)
+                document.getElementById('result').innerHTML = "Error de sintáxis"
+            else
+                document.getElementById('result').innerHTML = `${resultado}`;
+        }
+        let resta = (button) => {
+            let numero1 = Number(document.getElementById('n1').value);
+            let numero2 = Number(document.getElementById('n2').value);
+            let resultado = numero1 - numero2;
+            if (resultado == NaN)
+                document.getElementById('result').innerHTML = "Error de sintáxis"
+            else
+                document.getElementById('result').innerHTML = `${resultado}`;
+        }
+        let multi = (button) => {
+            let numero1 = Number(document.getElementById('n1').value);
+            let numero2 = Number(document.getElementById('n2').value);
+            //En el caso de la multiplicación, para no usar el signo de multiplicación, creamos un bucle que sume el número1 a sí mismo un número2 de veces.
+            let resultado;
+            for (i = 1; i <= numero2; i++) {
+                resultado += resultado;
+            }
+            if (resultado == NaN)
+                document.getElementById('result').innerHTML = "Error de sintáxis"
+            else
+                document.getElementById('result').innerHTML = `${resultado}`;
+        }
+        let divi = (button) => {
+            let numero1 = Number(document.getElementById('n1').value);
+            let numero2 = Number(document.getElementById('n2').value);
+            //En el caso de la división, para no usar el signo de división, creamos un bucle que vaya restando el valor del número 2 al valor del número 1
+            //hasta que el resto sea 0 y registre el número de iteraciones, ese será el resultado.
+            let resultado = 1;
+            let resto = numero1 - numero2;
+
+            //Creamos una condición para evitar resultados decimales
+            if (resto - numero2 < 0){
+                resto = 0;
+                resultado = 0;
+            }
+            else {
+                while (resto != 0) {
+                    resultado++;
+                    resto -= numero2;
+                    //Creamos una parada para evitar bucles infinitos en decimales cuando el resto sea menos que el divisor
+                    if (resto - numero2 < 0)
+                        resto = 0;
+                }
+            }
+
+
+            if (resultado == NaN)
+                document.getElementById('result').innerHTML = "Error de sintáxis"
+            else
+                document.getElementById('result').innerHTML = `${resultado}`;
+        }
+
+    </script>
+</body>
+
+</html>

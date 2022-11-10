@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>
+        Problema 2 (5 p)
+        <br>
+        Diseñar mediante clases el siguiente problema.
+        <br>
+        Un empresario tiene 3 hoteles en la ciudad Puerto1, Puerto2 y Puerto3.
+        <br>
+        En cada hotel tiene 10 habitaciones, cada una de ellas de 3 camas, excepto Puerto3 que es
+        de 4 camas.
+        <br>
+        De cada cliente se debe saber: Nombre, apellidos, DNI y edad.
+        <br>
+        Los requisitos de Puerto1 es una edad de 18-25(inclusive)
+        <br>
+        Los requisitos de Puerto2 es una edad de 26-35(inclusive)
+        <br>
+        Los requisitos de Puerto3 es una edad de 36-80(inclusive)
+        <br>
+        Funciones que se deben realizar:
+        <br>
+        - Dar de alta cliente.
+        <br>
+        - Dar de baja cliente
+        <br>
+        - Controlar si tiene la edad permitida
+        <br>
+        - Si la edad esta fuera del rango introducirlo en su hotel correspondiente.
+    </h4>
+
+    <!-- Creamos el script, de nuevo, para evitar translocaciones de archivos, en el mismo html-->
+
+    <script>
+
+        //Creamos una clase cliente que guarde los datos.
+
+        class cliente {
+
+            constructor(nombre, apellido, dni, edad) {
+                this.nombre = nombre;
+                this.apellido = apellido;
+                this.dni = dni;
+                this.edad = edad;
+            }
+
+        }
+
+        //Creamos una clase habitación
+
+        class habitacion {
+
+            constructor(numero, tamanioHabit) {
+
+                this.numero = numero;
+                this.tamanioHabit = tamanioHabit;
+                //La clase habitación constará de un array vacío de ocupantes.
+                this.ocupantes = [];
+
+            }
+
+        }
+
+        //Creamos una clase hotel
+
+        class hotel {
+
+            constructor(nombre, edadMin, edadMax, tamanioMaxHabit) {
+
+                this.nombre = nombre;
+                this.edadMin = edadMin;
+                this.edadMax = edadMax;
+                this.tamanioMaxHabit = tamanioMaxHabit;
+                //Creamos un array de 10 habitaciones en el constructor, usando el constructor de habitaciones al que le asignamos como número el valor
+                //de i y como tamaño, el tamaño máximo que definamos en el constructor del propio hotel.
+                this.habitaciones = [];
+                for (let i = 0; i < 10; i++) {
+                    this.habitaciones[i] = new habitacion(`Habitación Nº${i}`, this.tamanioMaxHabit);
+                }
+            }
+
+            //Creamos las funciones dentro de la clase Hotel, estas serán comprobadas en consola.
+
+            //La función alta cliente registrará a un cliente dado en una habitación dada.
+            altaCliente(cliente, nHabitacion) {
+                //Comprobamos los requisitos de los clientes, para actuar en corcondancia, así como los datos de ocupación de las habitaciones.
+                //Si la habitación ya está al límite de su capacidad:
+                if (this.habitaciones[nHabitacion].ocupantes.length >= this.tamanioMaxHabit) {
+                    console.log("Lo sentimos, la habitación en la que intenta registrar al cliente está llena actualmente.")
+                }
+                //Comprobamos ahora la edad
+                else if (cliente.edad < this.edadMin || cliente.edad > this.edadMax) {
+                    console.log("Lo sentimos, la edad del cliente no coincide con los rangos del hotel");
+                    //En este caso procedemos a averigüar, según su edad, donde debería registrarse, lo cual podrá hacerse así, ya que conocemos 
+                    //los datos con los que vamos a trabajar.
+                    if (cliente.edad >= 18 && cliente.edad <= 25) {
+                        Puerto1.habitaciones[nHabitacion].ocupantes.push(cliente);
+                        console.log("EL cliente ha sido registrado en su lugar en Puerto1")
+                    } else if (cliente.edad >= 26 && cliente.edad <= 35) {
+                        Puerto2.habitaciones[nHabitacion].ocupantes.push(cliente);
+                        console.log("EL cliente ha sido registrado en su lugar en Puerto2")
+                    } else if (cliente.edad >= 36 && cliente.edad <= 80) {
+                        Puerto3.habitaciones[nHabitacion].ocupantes.push(cliente);
+                        console.log("EL cliente ha sido registrado en su lugar en Puerto3")
+                    }
+                }
+                //Si todos estos requisitos se cumplen, lo registramos
+                else {
+                    this.habitaciones[nHabitacion].ocupantes.push(cliente);
+                    console.log("El cliente ha sido registrado con éxito.")
+                }
+
+            }
+
+            //La función dar de baja a un cliente tomará a un cliente y lo eliminará de la habitación en la que se encuentre.
+            bajaCliente(cliente, nHabitacion) {
+                //La función recorrerá con un bucle el interior del array de habitaciones. Y para cada habitación recorrerá el array de ocupantes.
+                for (let i = 0; i < this.habitaciones.length; i++) {
+                    for (let j = 0; j < this.habitaciones[i].ocupantes.length; j++) {
+                        //Cuando en el array de ocupantes haya una coincidencia, la eliminará.
+                        if (cliente == this.habitaciones[nHabitacion].ocupantes[j]) {
+                            this.habitaciones[nHabitacion].ocupantes.splice(j, 1);
+                            console.log("El cliente ha sido eliminado con éxito");
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //Comprobaciones:
+
+        //Creamos los clientes, los cuales serán todos iguales salvo edad (Único parámetro evaluable)
+        let cliente1 = new cliente("John", "Doe","658623N", 19);
+        let cliente2 = new cliente("John", "Doe","658623N", 21);
+        let cliente3 = new cliente("John", "Doe","658623N", 22);
+        let cliente4 = new cliente("John", "Doe","658623N", 24);
+        let cliente5 = new cliente("John", "Doe","658623N", 31);
+        let cliente6 = new cliente("John", "Doe","658623N", 45);
+        let cliente7 = new cliente("John", "Doe","658623N", 71);
+        let cliente8 = new cliente("John", "Doe","658623N", 42);
+        let cliente9 = new cliente("John", "Doe","658623N", 26);
+        let cliente10 = new cliente("John", "Doe","658623N", 79);
+
+        //Creamos los hoteles (las habitaciones se crearán automáticamente)
+
+        let Puerto1 = new hotel("Puerto1", 18, 25, 3);
+        let Puerto2 = new hotel("Puerto1", 26, 35, 3);
+        let Puerto3 = new hotel("Puerto1", 36, 80, 4);
+
+        //Pasamos a comprobar las funciones, comprobamos 4 veces consecutivas a añadir clientes (dentro del mismo rango de edad) a una habitación de 3 en Puerto2, para probar el fallo por
+        //ocupación máxima.
+
+        Puerto1.altaCliente(cliente1, 2);
+        Puerto1.altaCliente(cliente2, 2);
+        Puerto1.altaCliente(cliente3, 2);
+        Puerto1.altaCliente(cliente4, 2);
+
+        //Ahora pasamos a comprobar si podemos eliminar al cliente 3 y añadir así al cliente 4
+
+        Puerto1.bajaCliente(cliente3, 2);
+        Puerto1.altaCliente(cliente4, 2);
+
+        //Probamos ahora a añadir un cliente de un diferente rango de edad a Puerto2.
+
+        Puerto1.altaCliente(cliente10, 1);
+
+    </script>
+
+</body>
+
+</html>

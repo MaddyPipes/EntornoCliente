@@ -192,5 +192,3 @@ let num28B = prompt("Introduce otro número a evaluar: ","");
 document.write(`¿Se encuentra alguno de los números dados en el intervalo entre 50 y 99?: ${isInside(num28A, num28B)}`);
 
 
-
-
