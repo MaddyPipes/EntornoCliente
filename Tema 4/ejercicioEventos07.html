@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Definimos algunos estilos básicos para la caja -->
+    <style>
+        body {
+            background-image: url(https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .helicopter {
+            transition: 2ms;
+            position: absolute;
+            padding: 5em;
+            background-image: url(https://freepngimg.com/thumb/helicopter/11-2-helicopter-png.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;   
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Creamos la caja que se moverá por el documento -->
+    <div class="helicopter" id="helicopter" style="top: 300px; left: 300px;">
+    </div>
+
+    <!-- Abrimos el script aquí para no enviar más ficheros y total, es una sola actividad y para cosas simples no está mal -->
+    <script>
+        //Guardamos el div en una variable
+        let helicopter = document.getElementById("helicopter");
+        //Creamos una variable para que guarde los píxeles da la posición actual
+        let pos;
+
+        //Creamos el evento
+
+        document.addEventListener("keydown", function (e) {
+            //Dependiendo de la tecla pulsada, cambiaremos esa posición en una cantidad de píxeles dada usando style
+            //Además, actualizaremos el valor de la variable par que equivalga a su posición actual con respecto a top (eje Y) y left (eje X)
+            switch (e.key) {
+                case "ArrowUp":
+                    pos = parseInt(document.getElementById("helicopter").style.top) - 10;
+                    document.getElementById("helicopter").style.top = pos + "px";
+                    break;
+                case "ArrowDown":
+                    pos = parseInt(document.getElementById("helicopter").style.top) + 10;
+                    document.getElementById("helicopter").style.top = pos + "px";
+                    break;
+                case "ArrowLeft":
+                    pos = parseInt(document.getElementById("helicopter").style.left) - 10;
+                    document.getElementById("helicopter").style.left = pos + "px";
+                    break;
+                case "ArrowRight":
+                    pos = parseInt(document.getElementById("helicopter").style.left) + 10;
+                    document.getElementById("helicopter").style.left = pos + "px";
+                    break;
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

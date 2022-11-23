@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* Le damos un borde al cuadrado del ejericcio 2 para que se vea más claramente los cambios y un margen izquierdo para que quede mejor ubicado */
+        .cuadrao {
+            border: 3px dotted black;
+            margin-left: 4em;
+        }
+
+        .container img {
+            width: 20em;
+        }
+    </style>
+</head>
+
+<body>
+    <h6>1.- Coloque en la aplicación una imagen:
+        <ul>
+            <li>
+                Mientras se mantenga click pulsado cambiar por otra imagen
+            </li>
+            <li>
+                Cuando se suelta el click debe volver a la primera imagen
+            </li>
+        </ul>
+    </h6>
+    <img src="https://i.kym-cdn.com/photos/images/newsfeed/001/931/955/181.jpg" alt="" style="width: 20em;" id="ej01">
+
+    <h6>2.- Realizar un script que responda estos
+        eventos:
+        <ul>
+            <li>
+                Al pulsar botón del ratón el color de fondo del cuadro de mensaje debe ser amarillo (#FFFF00).
+            </li>
+            <li>
+                Cuando se pulsa una tecla, el color de fondo debe ser azul (#CCE6FF).
+            </li>
+            <li>
+                Al volver a mover el ratón, el color de fondo vuelve a ser blanco
+            </li>
+        </ul>
+
+    </h6>
+    <button id="ej02" class="cuadrao" style="background-color: white;">Esto es un mensaje</button>
+
+    <h6>3.-Deshabilitar el botón derecho del ratón de tu aplicación web</h6>
+    <!-- En este ejercicio, debido a lo muy poco práctico que es deshabilitar el click derecho en todo el documento, crearemos un botón
+    que al pulsarlo, desactive el menú contextual ÚNICAMENTE en el botón -->
+    <button id="ej03">Desactivar Click Derecho</button>
+
+    <h6>4.-Realizar un script que cuando pulse el usuario con el botón del ratón en cualquier sitio de la
+        pantalla, identifique si ha pulsado con el botón derecho o con el izquierdo.</h6>
+    <!-- En este ejercicio crearemos un pequeño párrafo en el que aparezca un texto según lo que se haya pulsado en cualquier parte de la página
+    El párrafo contendrá una etiqueta b (para darle un poco de sustancia al contenido) y una etiqueta span para facilitar la edición del texto en JS -->
+    <p><b><span id="ej04" style="border: 3px solid black;">¿Qué click se ha pulsado?</span></b></p>
+
+    <h6>5.- Realizar un evento que muestre la url que tiene asociada cada imagen, cada vez que se pase el ratón
+        por encima de ella.</h6>
+    <!-- Añadimos imágenes para mostrar la url -->
+    <div class="container">
+        <div style="display: inline;">
+            <img src="https://i.kym-cdn.com/entries/icons/original/000/042/718/Screen_Shot_2022-11-18_at_11.18.07_AM.jpg"
+                id="img1" alt="" onmouseover="urlhover('img1')">
+        </div>
+        <div style="display: inline;">
+            <img class="ej05_image"
+                src="https://images.nintendolife.com/d515c5d68d367/pokemon-body-horror-glitches.large.jpg" id="img2"
+                alt="" onmouseover="urlhover('img2')">
+        </div>
+        <div style="display: inline;">
+            <img class="ej05_image" src="https://images.earlygame.com/images/Pokemon-SV-glitch.jpg" id="img3" alt=""
+                onmouseover="urlhover('img3')">
+        </div>
+        <!-- Y una pequeña etiqueta para mostrar la URL en ella -->
+        <p><b>URL:</b> <span id="ej05"></span></p>
+    </div>
+
+    <h6>6.-Realizar un script que muestre la tecla pulsada de teclado, y si se ha pulsado combinada con alt,
+        shift o control también lo indique</h6>
+    <p><b>Key:</b> <span id="ej06"></span></p>
+
+    <h6>7.-Realizar un script que permita mover una caja dentro de la ventana del navegador tanto con las
+        teclas de desplazamiento del teclado central como con las del teclado numérico. </h6>
+        <form action="ejercicioEventos07.html">
+            <button>¡Al cielo!</button>
+        </form>
+    <script src="ejerciciosEventos.js"></script>
+</body>
+
+</html>
