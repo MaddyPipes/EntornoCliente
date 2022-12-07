@@ -70,9 +70,9 @@ evento de click que llamará a la función designada en el script -->
             let numero1 = Number(document.getElementById('n1').value);
             let numero2 = Number(document.getElementById('n2').value);
             //En el caso de la multiplicación, para no usar el signo de multiplicación, creamos un bucle que sume el número1 a sí mismo un número2 de veces.
-            let resultado;
-            for (i = 1; i <= numero2; i++) {
-                resultado += resultado;
+            let resultado = 0;
+            for (let i = 1; i <= numero2; i++) {
+                resultado += numero1;
             }
             if (resultado == NaN)
                 document.getElementById('result').innerHTML = "Error de sintáxis"
@@ -88,7 +88,7 @@ evento de click que llamará a la función designada en el script -->
             let resto = numero1 - numero2;
 
             //Creamos una condición para evitar resultados decimales
-            if (resto - numero2 < 0){
+            if (resto - numero2 < 0) {
                 resto = 0;
                 resultado = 0;
             }

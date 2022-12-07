@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="aprobar">
+        <option value="10">Saco 10</option>
+        <option value="9">Saco 9</option>
+        <option value="8">Saco 8</option>
+        <option value="7">Saco 7</option>
+        <option value="6">Saco 6</option>
+        <option value="5" selected>Saco 5</option>
+        <option value="4">Saco 4</option>
+        <option value="3">Saco 3</option>
+        <option value="2">Saco 2</option>
+        <option value="1">Saco 1</option>
+    </select>
+
+    <form action="" onsubmit="comprobarDNI(dni)">
+        <input type="text" name="dni" id="dni">
+        <button>Enviar</button>
+    </form>
+
+    <script>
+
+        let nota = document.getElementById("aprobar");
+        console.log(nota.selectedIndex);
+        nota.addEventListener("change", function () {
+            notaSeleccionada = nota.selectedIndex;
+            if (nota.options[notaSeleccionada].value > 4)
+                alert("¡Aprobado!");
+            else
+                alert("Suspenso...")
+        })
+
+        let dni = document.getElementById("dni");
+        let re = /^[0-9]{8,8}[-][A-Za-z]$/;
+
+        function comprobarDNI(dni) {           
+            if (re.test(dni.value)) {
+                alert("DNI correcto")
+            }
+            else
+                alert("DNI incorrecto")
+        }
+
+
+    </script>
+</body>
+
+</html>
