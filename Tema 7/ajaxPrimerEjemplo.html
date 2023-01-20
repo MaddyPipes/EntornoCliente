@@ -1,55 +1,131 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 
 <head>
-    <title>Hola Mundo con AJAX, version 2</title>
-    <script type="text/javascript" language="javascript">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Ejemplo AJAX</title>
+
+    <script>
+
+        //En primer lugar, creamos un array de estados de la petición según las variables del ejercicio y una variable inicializada a cero para el tiempo de respuesta
+
         var READY_STATE_UNINITIALIZED = 0;
         var READY_STATE_LOADING = 1;
         var READY_STATE_LOADED = 2;
         var READY_STATE_INTERACTIVE = 3;
         var READY_STATE_COMPLETE = 4;
-        var peticion_http;
 
-        //Al no usar ya una url de un archivo dentro de la carpeta XAMPP, borramos (comentamos) el parámetro url
-        function cargaContenido(/**url**/ metodo, funcion) {
-            peticion_http = inicializa_xhr();
+        let petitionStatus = ['No inicializado', 'Cargando', 'Cargado', 'Interactuando', 'Completada'];
+        let reponseTimeIni = 0;
+
+        //En segundo definimos (en este caso alteramos las funciones dadas por el ejercicio) las funciones que usaremos 
+
+        function cargaContenido() {
+
+            //Esta será la función principal
+
+            //Dentro de la misma, lo primero que ha de realizarse es la creación del objeto de las peticiones (Ya creada por el ejercicio)
+
+            // Instanciar objeto XMLHttpRequest
+            if (window.XMLHttpRequest) {
+                peticion = new XMLHttpRequest();
+            }
+            else {
+                peticion = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            //Después, parta evitar que los contenidos se solapen o queden estáticos, borraremos el contenido que tenga actualmente
+
+            document.getElementById('content').innerHTML = "";
+            document.getElementById('status').innerHTML = "";
+
+            //En caso de que la petición se haga de forma correcta (como en el ejercicio) preparamos la respuesta con la función muestraContenido()
 
             if (peticion_http) {
-                peticion_http.onreadystatechange = funcion;
-                //Cambiamos el archivo a abrir en la petición para que cargue la URL actual y la envíe, así al ejecutar la función mostrarContenido, mostrará el nuevo response,
-                //la URL actual precargada.
-                peticion_http.open('GET', location.href+'?nocache='+Math.random(), true);
-                peticion_http.send(null);
+                peticion_http.onreadystatechange = muestraContenido();
             }
-            4
-        }
-        function inicializa_xhr() {
-            if (window.XMLHttpRequest) {
-                return new XMLHttpRequest();
-            }
-            else if (window.ActiveXObject) {
-                return new ActiveXObject("Microsoft.XMLHTTP");
-            }
+
+            // Preparamos la petición a sabiendas de que, al ejecutarse esta función, la variable value ya estará creada y su valor asignado
+
+            peticion.open('GET', url.value + '?nocache=' + Math.random(), true);
+
         }
 
-        
-
+        // Modificamos la función muestraContenido del ejercicio para que ahora sea capaz de mostrar los estados de la petición y
+        // y de calcular la diferencia de tiempo en mili 
+        // desde que se ejecuta el cóndigo (momento 0) hasta que se ejecuta la respuesta
         function muestraContenido() {
-            if (peticion_http.readyState == READY_STATE_COMPLETE) {
-                if (peticion_http.status == 200) {
-                    alert(peticion_http.responseText);
+
+            //Primero calculamos el tiempo de ejecución para poder mostrarlo
+
+            let reponseTimeEnd = new Date();
+            let mili = tiempoFinal - tiempoInicial;
+
+            //Después mostramos usando los métodos del objeto  "peticion". que nos devolverá un valor especificado en las variables de arriba y hará que se imprima esa posición
+            //del array e iremos cocatenando las respuestas que vayamos obteniendo
+
+            let stat = document.getElementById('stat');
+            stat.innerHTML += `Tiempoo de respuesta: ${mili} mlseg. Estado de la petición: ${petitionStatus[peticion.readyState]}<br/>`;
+
+            //Cuando se termine de cargar el contenido y obtengamos un readyState de 4, imprimiremos el contenido de texto de la petición 
+
+            if (peticion.readyState == 4) {
+                if (peticion.status == 200) {
+                    let content = document.getElementById('content');
+                    content.innerHTML = peticion.responseText;
                 }
+
+
+            //Para obtener las cabeceras y el código de las peticiones usamos los métodos definidos por el objeto
+
+            let headings = document.getElementById('headings');
+            headings.innerHTML = peticion.getAllResponseHeaders();
+
+            let code = document.getElementById('code');
+            codigo.innerHTML = `${peticion.status}:  ${peticion.statusText}`;
             }
+
+
         }
-        function descargaArchivo() {
-            cargaContenido(/**"http://localhost/holamundo.txt"**/ "GET", muestraContenido);
+
+
+        //En último lugar, creamos la función que se ejecutará al cargar la página, que a su vez llamará a la función cargar contenido que irá llamando a las
+        //demás de forma escalonada.
+
+        window.onload = function () {
+            //Mostrará la URL de la página añadiendo su contenido con location.href
+            let url = document.getElementById('url');
+            url.value = location.href;
+
+            // Añadimos al botón que nos pedía el ejercicio con un evento al pulsarlo que pondrá en marcha las peticiones y respuestas AJAX
+            document.getElementById('showContent').onclick = cargaContenido;
         }
-        window.onload = descargaArchivo;
+
+
     </script>
 </head>
 
-<body></body>
+<body>
+    <form action="#">
+        <input type="text" id="url" />
+        <button id="showContent">Mostrar Contenidos</button>
+    </form>
+
+
+    <h2>Contenidos del archivo:</h2>
+    <div id="content"></div>
+
+    <h2>Cabeceras HTTP de la respuesta del servidor:</h2>
+    <div id="headings"></div>
+
+    <hr>
+
+    <h2>Estados de la petición:</h2>
+    <div id="stat"></div>
+
+    <h2>Código de estado:</h2>
+    <div id="code"></div>
+
+</body>
 
 </html>
