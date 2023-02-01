@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokeapi Ej 1</title>
+</head>
+
+<body>
+    <h1>Ditto</h1>
+    <button onclick="pokeApi()">Mostrar Datos API</button>
+    <p id="apiInfo"></p>
+
+    <script>
+        //Guardamos la URL en una variable
+        let url = "https://pokeapi.co/api/v2/pokemon/ditto/";
+
+        //Creamos una función que se ejecute al pulsar el botón
+        function pokeApi() {
+
+            //Hacemos fetch, usando el objeto response en una función que evalúe si su estado es 200 (el método ok devolverá TURE si lo es)
+            fetch(url).then(function (response) {
+                if (response.ok) {
+                    //Si el método ok sale true (osease, el status es 200) pasaremos la response a json y continuaremos con la promise
+                    response.json().then(function (data) {
+
+                        console.log(data);
+
+                        //Añadimos el contenido al párrafo de info
+
+                        document.getElementById("apiInfo").innerHTML = JSON.stringify(data);
+
+                    }).catch(error => console.log(error))
+
+                }else {
+
+                    //En caso de que la petición no salga adelante, lo imprimimos en el párrafo
+
+                    document.getElementById("apiInfo").innerHTML = `${response.status} : ${response.statusText}`;
+
+                }
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
