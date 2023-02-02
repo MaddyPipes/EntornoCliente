@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokeapi 2</title>
+</head>
+
+<body>
+    <h1>Elije Un Pokemon</h1>
+    <form action="">
+        <label for="pokemon">Escribe el nombre del pokemon:</label>
+        <input type="text" name="pokemon" id="pokemon" value="bulbasaur">
+        <button onclick="pokeApi(event)">Buscar</button>
+    </form>
+
+    <p id="apiInfo"></p>
+
+    <script>
+
+        //Creamos una función que se ejecute al pulsar el botón
+        function pokeApi(event) {
+
+            event.preventDefault();
+
+            //Guardamos en una variable el nombre del pokemon escrito
+
+            let pokemon = document.getElementById("pokemon");
+
+            //Guardamos la URL en una variable, la parte final de la urel será el nombre del pokemon escrito
+            let url = `https://pokeapi.co/api/v2/pokemon/${pokemon.value}/`;
+
+            //Hacemos fetch, usando el objeto response en una función que evalúe si su estado es 200 (el método ok devolverá TURE si lo es)
+            fetch(url).then(function (response) {
+                if (response.ok) {
+                    //Si el método ok sale true (osease, el status es 200) pasaremos la response a json y continuaremos con la promise
+                    response.json().then(function (data) {
+
+                        console.log(data);
+
+                        //Añadimos las imágenes del json al recuadro
+
+                        //Comprobamos que el pokemon tenga dimorfismo sexual, en caso de que así sea, presentará sprites diferentes para la hembra que mostraremos
+                        if(data.sprites.front_female){
+                            document.getElementById("apiInfo").innerHTML = `
+                        <img src="${data.sprites.front_default}">
+                        <img src="${data.sprites.front_shiny}">
+                        <img src="${data.sprites.front_female}">
+                        <img src="${data.sprites.front_shiny_female}">
+                        `;
+                        }else{
+                            document.getElementById("apiInfo").innerHTML = `
+                            <img src="${data.sprites.front_default}">
+                            <img src="${data.sprites.front_shiny}">
+                            `;
+                        }
+
+                    }).catch(error => console.log(error))
+
+                } else {
+
+                    //En caso de que la petición no salga adelante, lo imprimimos en el párrafo
+
+                    document.getElementById("apiInfo").innerHTML = `¡El pokemon no existe!`;
+
+                }
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
