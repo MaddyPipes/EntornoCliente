@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio JQUERY</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">//biblioteca JQUERY</script>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ciclo de 2 DAW</h1>
+    <ul>
+        <li id="primeroDAW">Primero
+            <ul>
+                <li>Lenguaje de Marcas</li>
+                <li>Programación</li>
+                <li>FOL</li>
+                <li>Ingles</li>
+                <li>Bases de Datos</li>
+                <li>Entornos de Desarrollo</li>
+                <li>Sistemas Informaticos</li>
+            </ul>
+        </li>
+        <li id="segundoDAW">Segundo
+            <ul>
+                <li>Despliegue de aplicaciones web</li>
+                <li>Diseño de interfaces web</li>
+                <li>Desarrollo web en entorno cliente </li>
+                <li>Desarrollo web en entorno servidor </li>
+                <li>Empresas e iniciativa emprendedora</li>
+                <li>Inglés</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p><b>1.- Muestra en un alert la cantidad de cursos por los que está compuesto el ciclo de 2 DAW.</b></p>
+    <button onclick="cuantasAsignaturas()">Mostrar Número Asignaturas</button>
+
+    <p><b>2.- Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.</b></p>
+    <button onclick="mostrarLista()">Activar Mostrar Lista</button>
+
+    <p><b>3.-Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.</b></p>
+    <button onclick="clicks()">Activar Tecla (Click)</button>
+
+    <p><b>4.-Modifica el comportamiento anterior para poderlo hacer con una sola tecla.</b></p>
+    <button onclick="clickUnico()">Activar para hacerlo de un sólo click (Recuerda pulsar antes el ejercicio 3!)</button>
+
+    <p><b>5.-Elimina el efecto del punto 3.</b></p>
+    <button onclick="eliminarEfectos()">Elinar Efectos</button>
+
+    <p><b>6.-Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.</b></p>
+    <button onclick="efectoKeydown()">Evento Keydown (Tecla M)</button>
+
+    <p><b>7.- Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.</b></p>
+    <button onclick="mostrarHoras()">Hover de Horas Semanales</button>
+
+    <p><b>8.- Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.</b></p>
+    <button onclick="mostrarHorasClick()">Click de horas semanales</button>
+
+    <p><b>9.-  Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.</b></p>
+    <button onclick="mostrarModalidadClick()">Click de modalidad</button>
+
+    <!-- NOTA: En los ejercicos pone que usemos ON para los dos últimos ejercicios, pero he visto conveniente usar ONE en su lugar, para que no se repita el evento por click y acabe hecho un adefesio la lista -->
+
+    <script src="ejercicioJQuery1.js"></script>
+</body>

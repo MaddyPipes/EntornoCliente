@@ -67,7 +67,11 @@
         "destino": "Palma",
         "url": "http://www.ibserveis.com/vuelo10.Hhtml",
         "horaSalida": "19:00",
-        "horaLlegada": "21:00"
+        "horaLlegada": "21:00",
+        "fecha": {
+            "día" : "19",
+            "mes": "01"
+        }
     }
 
 ]

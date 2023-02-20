@@ -41,14 +41,17 @@
 
             //En caso de que la petición se haga de forma correcta (como en el ejercicio) preparamos la respuesta con la función muestraContenido()
 
-            if (peticion_http) {
-                peticion_http.onreadystatechange = muestraContenido();
+            if (peticion) {
+                peticion.onreadystatechange = muestraContenido();
             }
 
             // Preparamos la petición a sabiendas de que, al ejecutarse esta función, la variable value ya estará creada y su valor asignado
 
             peticion.open('GET', url.value + '?nocache=' + Math.random(), true);
 
+            //Enviamos la petición
+
+            peticion.send(null);
         }
 
         // Modificamos la función muestraContenido del ejercicio para que ahora sea capaz de mostrar los estados de la petición y
