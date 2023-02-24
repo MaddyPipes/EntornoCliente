@@ -81,82 +81,58 @@
     </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
-
-        //Creamos un string con la dirección del archivo JSON
-
+        // Creamos una variable que guarde la ubicación del archivo Json a consultar
         let url = "./aviones.json";
 
-        //Creamos la función que mostrará todos los vuelos
-
+        // Hacemos una función que muestre en una tabla todos los vuelos
         function verTodosVuelos(event) {
 
-            //Evitamos que la página recargue al pulsar el botón
-
             event.preventDefault();
 
-            //Realizamos el fetch a la url
+            // Mandamos una petición get para obtener los datos del JSON
+            $.get(url, function (data) {
+                let body = "";
 
-            fetch(url).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (data) {
-
-                        //Una vez tenemos la petición hecha y convertida, mostramos la info a través de un bucle que recorra el objeto del JSON.
-
-                        let body = "";
-
-                        for (let i = 0; i < data.length; i++) {
-                            body += `<tr><td>${data[i].origen}</td><td>${data[i].destino}</td><td>${data[i].horaSalida}</td></tr>`;
-                        }
-                        document.getElementById('vuelos').innerHTML = body;
-                    })
+                // Iteramos por el array de datos resultante para ir imprimiendo el cuerpo de la tabla
+                for (let i = 0; i < data.length; i++) {
+                    body += `<tr><td>${data[i].origen}</td><td>${data[i].destino}</td><td>${data[i].horaSalida}</td></tr>`;
                 }
-            }).catch()
+
+                // Añade el cuerpo de la tabla al elemento "vuelos"
+                $('#vuelos').html(body);
+            });
         }
 
-        //Creamos ahora la función para buscar vuelos según lo introducido en los select del menú
-
-        //Lo haremos muy similar al anterior, con la excepción de que usaremos condicionales para verificar si se cumplen los criterios elegidos
-
+        // Creamos una función
         function comprobarVuelos(event) {
-            //Evitamos que la página recargue al pulsar el botón
 
             event.preventDefault();
 
-            //Guardamos el valor de los select en variables para usarlas en los filtros
+            // Obtenemos el valor de las variables
+            let destino = $('#destinos').val();
+            let horaSalida = $('#hora').val();
 
-            let destino = document.getElementById("destinos").value;
+            // Envíamos una petición a la url para que nos de los datos del JSON
+            $.get(url, function (data) {
+                let body = "";
 
-            let horaSalida = document.getElementById("hora").value;
+                // Iteramos a través del array cumpliendo los criterios de los filtros
 
-            //Realizamos el fetch a la url
-
-            fetch(url).then(function (response) {
-
-                if (response.ok) {
-                    response.json().then(function (data) {
-
-                        //Una vez tenemos la petición hecha y convertida, mostramos la info a través de un bucle que recorra el objeto del JSON.
-
-                        let body = "";
-
-                        for (let i = 0; i < data.length; i++) {
-
-                            //Comprobamos las horas de salida y los destinos
-
-                            if(data[i].destino == destino && data[i].horaSalida >= horaSalida ){
-                                
-                                body += `<tr><td>${data[i].origen}</td><td>${data[i].destino}</td><td>${data[i].horaSalida}</td></tr>`;
-
-                            }
-
-                        }
-                        document.getElementById('vuelos').innerHTML = body;
-                    })
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].destino == destino && data[i].horaSalida >= horaSalida) {
+                        body += `<tr><td>${data[i].origen}</td><td>${data[i].destino}</td><td>${data[i].horaSalida}</td></tr>`;
+                    }
                 }
-            }).catch()
 
+                // Añadimos el cuerpo
+
+                $('#vuelos').html(body);
+            });
         }
+        
     </script>
 </body>
 

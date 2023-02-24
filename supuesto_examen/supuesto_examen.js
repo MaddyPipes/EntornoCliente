@@ -2,34 +2,6 @@
 //del que se trate. Por defecto no hará falta añadir nada más a texto o email, ya que sus validaciones estándar son las que se piden en el ejercicio.
 
 (function () {
-    //Usamos estricto para evitar que haya problemas con las librerías.
-    'use strict'
-    //Seleccionamos todos los campos que requieran validación (ya que tendrán esta clase)
-    const forms = document.querySelectorAll('.requires-validation');
-
-    //Especificaciones contraseña
-    const pass_regEx = /^(?=\w*\d)(?=\w*[a-z])\S{8,255}$/
-
-    //Guardamos especificamente el campo de la contraseña, para evitar trastear el array de elementos HTML del formulario
-    let pass = document.getElementById("pass");
-    let pass_2 = document.getElementById("pass_2");
-
-    //Convertimos la lista en array para aplicar un foreach que vaya añadiendo, mediante una función, el evento de validación por separado a cada elemento (cada campo)
-    const array_forms = Array.from(forms);
-
-    //Le damos valores randomizados a la suma, creando variables random y una tercera que guarde el resultado.
-    let num1 = Math.floor(Math.random() * 9 + 1);
-    let num2 = Math.floor(Math.random() * 9 + 1);
-    let catcha_result = num1 + num2;
-
-    //Guardamos el elemento que hará las veces de etiqueta del catcha y el input del resultado.
-
-    let catcha = document.getElementById("catcha");
-    let catcha_input = document.getElementById("catcha-result");
-
-    //Le damos valor
-
-    catcha.innerHTML = `¿ ${num1} + ${num2} = x ?`;
 
     array_forms.forEach(function (form) {
         form.addEventListener('submit', function (e) {

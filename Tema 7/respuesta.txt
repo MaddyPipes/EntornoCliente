@@ -1,0 +1,3 @@
+La forma más eficaz de implementarlo sería creando un formulario en el HTML que contiene el script para que pueda lanzar usando
+el método post los valores introducidos en el mismo, guardando en el script, mediante DOM, el valor del input de números que de
+el usuario.

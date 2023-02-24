@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        (async () => {
+    try {
+
+        //Para calcular el máximo y el mínimo DE EN EL ENTORNO CLIENTE (Puesto que la media se está calculando en el entorno servidor)
+        //lo primero será sacar el array de números del objeto datos y crear dos variables más con el máximo y el mínimo de cada uno
+        // en el objeto “datos” tenemos los datos que vamos a enviar al servidor
+
+        let numbers = [2,4,6,8,10];
+
+        let maxNumber = Math.max(...numbers);
+        
+        let minNumber = Math.min(...numbers);
+
+        // en este ejemplo tenemos dos datos; un título y un array de números
+        var datos = { titulo: "Listado de números", numeros:  numbers, maximo: maxNumber, minimo: minNumber};
+        // en el objeto init tenemos los parámetros de la petición AJAX
+        var init = {
+            // el método de envío de la información será POST
+            method: "POST",
+            headers: { // cabeceras HTTP
+                // vamos a enviar los datos en formato JSON
+                'Content-Type': 'application/json'
+            },
+            // el cuerpo de la petición es una cadena de texto
+            // con los datos en formato JSON
+            body: JSON.stringify(datos) // convertimos el objeto a texto
+        };
+        // realizamos la petición AJAX usando fetch
+        // el primer parámetro es el recurso del servidor al que queremos acceder
+        // en este ejemplo, es un fichero php llamado media.php que se encuentra
+        // dentro de la carpeta ./php y con el código PHP que hay arriba.
+        // el segundo parámetro es el objeto init con la información sobre los
+        // datos que queremos enviar, el método de envio, etc.
+        var response = await fetch('./media.php/', init);
+        if (response.ok) {
+            // si la petición se ha resuelto correctamente,
+            // intentamos resolver otra promesa que convierta
+            // lo que nos ha respondido el servidor en un objeto de JavaScript.
+            // si el servidor no ha enviado correctamente la información
+            // en formato JSON, no se podrán convertir correctamente
+            // los datos a un objeto, por lo que la promesa fallará
+            // y esto provocará un error.
+            var respuesta = await response.json();
+            // en este ejemplo, el servidor nos devuelve un objeto con dos datos,
+            // la media de los números enviados, y un fragmento de HTML
+            // con un el título y una lista con los números
+            alert("La media es: " + respuesta.media);
+            document.write(respuesta.html);
+            document.close();
+        } else {
+            throw new Error(response.statusText);
+        }
+    } catch (err) {
+        console.log("Error al realizar la petición AJAX: " + err.message);
+    }
+})();
+    </script>
+</body>
+</html>

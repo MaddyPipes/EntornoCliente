@@ -34,8 +34,9 @@ function setCookie(cname,cvalue,exdays) {
     let visits = getCookie("visits");
     if (visits != "") {
       visits++;
+      setCookie("visits", visits, 30);
     } else {
-        setCookie("visits", 0, 30);
+        setCookie("visits", 1, 30);
     }
    }
 

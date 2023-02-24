@@ -1,0 +1,124 @@
+[
+    {
+        "nombre": "Alejandro",
+        "apellidos": "Ceballos Cuevas",
+        "edad": "32",
+        "sexo": "M",
+        "notaMedia1DAW": "9.3",
+        "notaMedia2DAW": "8.7",
+        "ciudad": "Jerez",
+        "fechaFinalizacion": "12/06/2023"
+    },
+    {
+        "nombre": "Irene",
+        "apellidos": "Rodríguez Martínez",
+        "edad": "32",
+        "sexo": "F",
+        "notaMedia1DAW": "7.3",
+        "notaMedia2DAW": "8.0",
+        "ciudad": "Jerez",
+        "fechaFinalizacion": "15/06/2023"
+    },
+    {
+        "nombre": "Jesús",
+        "apellidos": "Vázques Figueroa",
+        "edad": "27",
+        "sexo": "M",
+        "notaMedia1DAW": "7.8",
+        "notaMedia2DAW": "8.5",
+        "ciudad": "Jerez",
+        "fechaFinalizacion": "11/12/2023"
+    },
+    {
+        "nombre": "Manuel",
+        "apellidos": "Macías Pajas",
+        "edad": "19",
+        "sexo": "M",
+        "notaMedia1DAW": "6.1",
+        "notaMedia2DAW": "7.1",
+        "ciudad": "El Puerto",
+        "fechaFinalizacion": "11/06/2023"
+    },
+    {
+        "nombre": "Samuel",
+        "apellidos": "Palma Gordillo",
+        "edad": "32",
+        "sexo": "M",
+        "notaMedia1DAW": "6.2",
+        "notaMedia2DAW": "5.0",
+        "ciudad": "El Puerto",
+        "fechaFinalizacion": "18/06/2023"
+    },
+    {
+        "nombre": "Soledad",
+        "apellidos": "Gatika Cepillo",
+        "edad": "34",
+        "sexo": "F",
+        "notaMedia1DAW": "5.1",
+        "notaMedia2DAW": "5.9",
+        "ciudad": "El Puerto",
+        "fechaFinalizacion": "21/12/2023"
+    },
+    {
+        "nombre": "Manuel",
+        "apellidos": "Manigueta Odero",
+        "edad": "29",
+        "sexo": "M",
+        "notaMedia1DAW": "6.3",
+        "notaMedia2DAW": "8.2",
+        "ciudad": "Sanlúcar",
+        "fechaFinalizacion": "12/12/2023"
+    },
+    {
+        "nombre": "Andrea",
+        "apellidos": "Sumariva",
+        "edad": "28",
+        "sexo": "F",
+        "notaMedia1DAW": "5.8",
+        "notaMedia2DAW": "5.1",
+        "ciudad": "Sanlúcar",
+        "fechaFinalizacion": "01/06/2023"
+    },
+    {
+        "nombre": "Daniel",
+        "apellidos": "Benítez Vela",
+        "edad": "28",
+        "sexo": "M",
+        "notaMedia1DAW": "5.9",
+        "notaMedia2DAW": "7.3",
+        "ciudad": "Sanlúcar",
+        "fechaFinalizacion": "04/06/2023"
+    },
+    {
+        "nombre": "Zacarías",
+        "apellidos": "Agua Pozo",
+        "edad": "34",
+        "sexo": "M",
+        "notaMedia1DAW": "9.2",
+        "notaMedia2DAW": "8.5",
+        "ciudad": "Rota",
+        "fechaFinalizacion": "07/12/2023"
+    },
+    {
+        "nombre": "Ana",
+        "apellidos": "Quintero Carreira",
+        "edad": "32",
+        "sexo": "F",
+        "notaMedia1DAW": "7.3",
+        "notaMedia2DAW": "9.6",
+        "ciudad": "Rota",
+        "fechaFinalizacion": "07/06/2023"
+    },
+    {
+        "nombre": "Jason",
+        "apellidos": "Demasiado Largo",
+        "edad": "24",
+        "sexo": "M",
+        "notaMedia1DAW": "5.0",
+        "notaMedia2DAW": "5.0",
+        "ciudad": "Rota",
+        "fechaFinalizacion": "04/12/2023"
+    }
+    
+
+]
